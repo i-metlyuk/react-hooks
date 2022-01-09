@@ -60,10 +60,18 @@ const Slider = (props) => {
     const [slide, setSlide] = useState(0);
     const [autoplay, setAutoplay] = useState(false);
 
+    function logging() {
+        console.log('log!');
+    }
+
     useEffect(() => {
-        console.log('effect');
-        document.title = `Slide: ${slide}`;
+        console.log('effect slide');
+        document.title = `Slide: ${slide}`;    
     }, [slide]);
+
+    useEffect(() => {
+        console.log('autoplay')
+    }, [autoplay])
     
     function changeSlide(i) {
         setSlide(slide => slide + i);
@@ -95,9 +103,14 @@ const Slider = (props) => {
 }
 
 function App() {
-  return (
-        <Slider/>
-  );
+    const [slider, setSlider] = useState(true);
+    
+    return (
+        <>
+            <button onClick={() => setSlider(false)}>Click</button>
+            {slider ? <Slider/> : null}
+        </>
+    );
 }
 
 export default App;
